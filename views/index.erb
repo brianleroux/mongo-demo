@@ -1,0 +1,31 @@
+<h1>some things...</h1>
+
+<form action="/" method="post">
+	<textarea name="thing[stuff]" id="thing_stuff"></textarea>
+	<textarea name="thing[junk]" id="thing_junk"></textarea>
+	<input type="submit" />
+</form>
+
+<hr/>
+
+<% @things.each do |thing| %>
+
+	<%= thing.errors if thing.errors %>
+	
+	<form action="/" method="post">
+		<input type="hidden" name="_method" id="_method" value="put" />
+		<input type="hidden" name="thing[id]" id="thing_id" value="<%= thing.id %>" />
+		<textarea name="thing[stuff]" id="thing_stuff"><%= thing.stuff %></textarea>
+		<textarea name="thing[junk]" id="thing_junk"><%= thing.junk %></textarea>
+		<input type="submit" value="save" />
+	</form>
+	
+	
+	<form action="/" method="post">
+		<input type="hidden" name="_method" id="_method" value="delete" />
+		<input type="hidden" name="id" id="id" value="<%= thing.id %>" />
+		<input type="submit" value="delete?" />
+	</form>
+	
+	<br />
+<% end %>	
